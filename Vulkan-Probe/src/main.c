@@ -1,12 +1,26 @@
+#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "headers.h"
-#include <vulkan/vulkan.h>
 #include <vulkan/vulkan_core.h>
+#include <vulkan/vulkan.h>
 
+void createSurface(State *state) {
+    VkResult createSurfaceResult = glfwCreateWindowSurface(
+        state->vulkan.instance,
+        state->conf.window,
+        NULL,
+        &state->vulkan.surface
+    );
+
+    if (createSurfaceResult != VK_SUCCESS) {
+        printf("failed to create window surface!\n");
+        exit(1);
+    }
+}
 
 void createDevice(State *state) {
     float queuePriority = 1.0f;
@@ -69,6 +83,17 @@ void queueFamilySelect(State *state) {
         if (properties.queueFlags & VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
             state->vulkan.queueFamily = queueFamilyIndex;
             break;
+        }
+
+        VkBool32 presentSupport = false;
+        vkGetPhysicalDeviceSurfaceSupportKHR(
+            state->vulkan.physicalDevice,
+            state->vulkan.queueFamily,
+            state->vulkan.surface, &presentSupport
+        );
+
+        if (presentSupport) {
+            state->vulkan.queueFamily = queueFamilyIndex;
         }
     }
 
@@ -135,6 +160,7 @@ void init(State *state) {
     selectPhysicalDevice(state);
     queueFamilySelect(state);
     createDevice(state);
+    createSurface(state);
 }
 
 void loop(State *state) {
@@ -144,6 +170,17 @@ void loop(State *state) {
 }
 
 void cleanup(State *state) {
+    vkDestroySurfaceKHR(
+        state->vulkan.instance,
+        state->vulkan.surface,
+        NULL
+    );
+
+    vkDestroyInstance(
+        state->vulkan.instance,
+        NULL
+    );
+
     glfwDestroyWindow(state->conf.window);
     glfwTerminate();
 }

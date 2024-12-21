@@ -17,6 +17,8 @@ typedef struct {
     VkPhysicalDevice physicalDevice;
     uint32_t queueFamily;
     VkDevice device;
+    VkSurfaceKHR surface;
+    VkQueue presentQueue;
 } Vulkan;
 
 typedef struct {
