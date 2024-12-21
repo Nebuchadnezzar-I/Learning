@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/VulkanApp.dir/link.d CMakeFiles/VulkanApp.dir/src/main.c.o -o bin/VulkanApp  /usr/lib/libvulkan.so -lglfw -ldl
