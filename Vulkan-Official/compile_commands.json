@@ -1,8 +1,8 @@
 [
 {
-  "directory": "/home/admiralcapo/Personal/Learning/Vulkan/build",
-  "command": "/usr/bin/c++  -I/usr/include/vulkan -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/VulkanApp.dir/src/main.cpp.o -c /home/admiralcapo/Personal/Learning/Vulkan/src/main.cpp",
-  "file": "/home/admiralcapo/Personal/Learning/Vulkan/src/main.cpp",
+  "directory": "/home/admiralcapo/Personal/Learning/Vulkan-Official/build",
+  "command": "/usr/bin/c++  -I/usr/include/vulkan -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/VulkanApp.dir/src/main.cpp.o -c /home/admiralcapo/Personal/Learning/Vulkan-Official/src/main.cpp",
+  "file": "/home/admiralcapo/Personal/Learning/Vulkan-Official/src/main.cpp",
   "output": "CMakeFiles/VulkanApp.dir/src/main.cpp.o"
 }
 ]
