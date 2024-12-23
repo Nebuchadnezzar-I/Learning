@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <stdio.h>
 
 void __global__ print_by_gpu( int *source ) {
     source += 1;
@@ -17,8 +16,6 @@ int main() {
         &dest, &source,
         sizeof(int), cudaMemcpyDeviceToHost
     );
-
-    printf("Copied: %d \n", dest);
 
     cudaFree( &source );
 
