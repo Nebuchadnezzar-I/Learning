@@ -1,0 +1,8 @@
+|let       |i         |=         |0         |;         |
+|const     |let       |i         |=         |0         |;
+|          |          |          |          |          |
+|gt01      |start     |          |          |          |
+|          |let       |i         |=         |0         |;
+|          |if        |i         |==        |10        |;
+|          |return    |i         |;         |          |
+|gt01      |end       |          |          |          |
