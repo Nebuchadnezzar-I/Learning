@@ -2,20 +2,25 @@ BITS 64
 
     section .data
     fmt db "%d", 0x0A, 0
-    msg db 1, 2, 3
+    msg db 1, 2, 3, 4, 5, 6
     ;
     section .text
     extern printf
     global main
 
 main:
-    lea rdi, [rel fmt]
-    lea rdx, [msg + 5000] ; array indexing
-    movzx rsi, byte [rdx] ; load val to rsi
-    mov rax, 0
+    mov rbx, 0x00
 
+_loop:
+    ;
+    mov rdi, fmt
+    movzx rsi, byte [msg + rbx]
+    xor rax, rax
     call printf
-    jmp _exit
+    ;
+    inc rbx
+    cmp rbx, 0x06
+    jnz _loop
 
 _exit:
     mov rax, 0x3C

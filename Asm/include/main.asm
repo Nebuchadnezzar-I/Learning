@@ -3,6 +3,7 @@
     len equ $ - msg
 
     section .text
+    %include "exit.asm"
     global main
 
 main:
@@ -13,8 +14,3 @@ main:
     syscall
 
     call _exit
-
-_exit:
-    mov rax, 0x3C
-    mov rdi, 0x00
-    syscall
